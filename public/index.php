@@ -1,9 +1,11 @@
 <?php 
 
+$title = 'Index_page';
+$h1 = 'Our Atmosphere';
 include __DIR__ . '/../inc/header.inc.php';
 
 ?>
-      
+    <title><?=$title?></title>  
     <main>
       <div id="mobile_img"><img src="images/mobile_image.jpg" style="width:100%" alt="cup with hot coffee and cookies" /></div>
       <div id="inside"><img src="images/design_inside_465.jpg" 
@@ -22,7 +24,7 @@ include __DIR__ . '/../inc/header.inc.php';
           123 Portage Avenue E
         </div>
       <div id="home_page">
-      <h1>Our atmosphere</h1>
+      <h1><?=$h1?></h1>
         <p>In our coffee shop everybody is treated like a family member. 
         Here you can find a dark corner to stay alone with your thoughts
         or, on the contrary, meet new friends, and of course 

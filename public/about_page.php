@@ -1,13 +1,14 @@
 <?php 
 
-$title = 'Hello from Coffee Time';
+$title = 'About_page';
+$h1 = 'Hello from Coffee Time';
 include __DIR__ . '/../inc/header.inc.php';
 
 ?>
-      <!-- Navigation menu ends -->
-      
+
+      <title><?=$title?></title>
       <main>
-        <h1><?=$title?></h1>
+        <h1><?=$h1?></h1>
           <p>Coffee Time is a Winnipeg-based company registered in the province of 
           Manitoba. Meg Rayan is president of Coffee Time, and her husband, Bob Krichkov,
           is partner and owner.</p>

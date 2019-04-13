@@ -1,12 +1,13 @@
 <?php 
 
-$title = 'Visit Coffee Time';
+$title = 'Contact_page';
+$h1 = 'Visit Coffee Time';
 include __DIR__ . '/../inc/header.inc.php';
 
 ?>
-    
+    <title><?=$title?></title>
     <main><!--Main page -->
-      <h1><?=$title?></h1>
+      <h1><?=$h1?></h1>
       <p> and sip a complimentary tea or coffee while you 
        browse our selection of unique tea and coffee offerings, including a 
        wide range of elegant Asian and European glassware, teapots and accessories</p>  
