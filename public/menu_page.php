@@ -1,11 +1,12 @@
 <?php 
 
+$title = 'Coffee Time Menu';
 include __DIR__ . '/../inc/header.inc.php';
 
 ?>
       <!-- Navigation menu -->
       <main>
-        <h1>Coffee Time Menu</h1>
+        <h1><?=$title?></h1>
         <fieldset id="menu">
         <legend>We open daily 7am to 7 pm</legend>
           <div id="content">
