@@ -1,11 +1,14 @@
 <?php 
 
-$title = 'About_page';
+$title = 'about_page';
 $h1 = 'Hello from Coffee Time';
+
+require 'functions.php';
+require 'connect.php';
 include __DIR__ . '/../inc/header.inc.php';
 
 ?>
-
+      <body id="about_page">
       <title><?=$title?></title>
       <main>
         <h1><?=$h1?></h1>

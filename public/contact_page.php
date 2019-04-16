@@ -1,10 +1,11 @@
 <?php 
 
-$title = 'Contact_page';
+$title = 'contact_page';
 $h1 = 'Visit Coffee Time';
 include __DIR__ . '/../inc/header.inc.php';
 
 ?>
+    <body id="<?=$title?>">
     <title><?=$title?></title>
     <main><!--Main page -->
       <h1><?=$h1?></h1>

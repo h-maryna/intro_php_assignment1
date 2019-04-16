@@ -1,13 +1,14 @@
 <?php 
 
-$title = 'Coffee_beans_page';
+$title = 'coffee_beans_page';
 $h1 = 'Coffee we offer';
 include __DIR__ . '/../inc/header.inc.php';
 
 ?>
-      <title>Coffee Time About Page</title>
+      <body id="<?=$title?>">
+      <title><?=$title?></title>
       <main>
-      <h1><?=$h1?></h1>
+        <h1><?=$h1?></h1>
       <table>
         <caption><div id="free">Free shipping over 49$</div></caption>
       
