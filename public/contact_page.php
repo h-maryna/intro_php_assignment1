@@ -7,7 +7,6 @@ require 'functions.php';
 require 'config.php';
 
 ?>
-    <body id="<?=$title?>">
     <title><?=$title?></title>
     <main><!--Main page -->
       <h1><?=$h1?></h1>

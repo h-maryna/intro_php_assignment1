@@ -3,9 +3,10 @@
 $title = 'coffee_beans_page';
 $h1 = 'Coffee we offer';
 include __DIR__ . '/../inc/header.inc.php';
+require 'functions.php';
+require 'config.php';
 
 ?>
-      <body id="<?=$title?>">
       <title><?=$title?></title>
       <main>
         <h1><?=$h1?></h1>

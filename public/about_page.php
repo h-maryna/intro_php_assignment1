@@ -8,7 +8,6 @@ require 'config.php';
 include __DIR__ . '/../inc/header.inc.php';
 
 ?>
-      
       <title><?=$title?></title>
       <main>
         <h1><?=$h1?></h1>
@@ -38,7 +37,4 @@ include __DIR__ . '/../inc/header.inc.php';
 
   ?>    
      
-    </div>
-  </body>
-
-</html>
+    

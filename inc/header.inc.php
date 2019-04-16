@@ -50,7 +50,7 @@
     <![endif]-->
 
     <?php if('about_page' == $title) {
-    include 'embedded.inc';
+    include 'embedded.css';
     } 
     ?>
     
@@ -83,6 +83,7 @@
     <script src="old_ie.js"></script>
   </head> 
     
+    <body id="<?=$title?>">
     <div id="wrapper">
       <header><!-- Main logo and services tagline -->
         <div id="header">

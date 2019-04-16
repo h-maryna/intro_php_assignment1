@@ -7,7 +7,6 @@ require 'functions.php';
 require 'config.php';
 
 ?>
-    <body id="<?=$title?>">
     <title><?=$title?></title>  
     <main>
       <div id="mobile_img"><img src="images/mobile_image.jpg" style="width:100%" alt="cup with hot coffee and cookies" /></div>

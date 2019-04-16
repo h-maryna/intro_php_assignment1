@@ -1,4 +1,4 @@
-<footer><!-- Footer -->
+  <footer><!-- Footer -->
         <div id="main_logo_footer">
         </div>
         <div id="address">
@@ -12,4 +12,8 @@
         </div>
         <!-- Copyright info -->
         <p class="copy">Copyright &copy; 2018 - Coffee Time</p>
-      </footer>
+  </footer>
+    </div>
+</body>
+
+</html>
