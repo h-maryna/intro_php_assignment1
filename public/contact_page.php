@@ -3,6 +3,8 @@
 $title = 'contact_page';
 $h1 = 'Visit Coffee Time';
 include __DIR__ . '/../inc/header.inc.php';
+require 'functions.php';
+require 'config.php';
 
 ?>
     <body id="<?=$title?>">

@@ -2,7 +2,6 @@
 
 $title = 'about_page';
 $h1 = 'Hello from Coffee Time';
-$body_id = 'about_page';
 
 require 'functions.php';
 require 'config.php';
@@ -30,7 +29,7 @@ include __DIR__ . '/../inc/header.inc.php';
         <h2>Our Mission</h2> 
           <a href="#" class="go_top">Go to the top</a>
           <p>The mission of our company is to make everybody happy and satisfied</p>
-          <p id="example1"><img src="images/coffee_heart.jpg" alt="Cup with coffee formed heart"style="width:100%" />
+          <p id="example1"><img src="images/coffee_heart.jpg" alt="Cup with coffee formed heart" style="width:100%" />
        </main>
   
   <?php 
