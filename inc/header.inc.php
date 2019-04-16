@@ -48,6 +48,7 @@
     <!--[if LTE IE 8]>
       <link rel="stylesheet" href="capstone_old_ie.css" type="text/css" />
     <![endif]-->
+
     <style>
       /*To make our desktop to be responsible */
       @media screen and (min-width: 769px){ /*for desctop */
@@ -79,7 +80,7 @@
  
  
   
-  <body>
+  <body id="<?=$title?>">
     <div id="wrapper">
       <header><!-- Main logo and services tagline -->
         <div id="header">
@@ -95,11 +96,11 @@
             <span id="bottombar"></span>
           </a>
           <ul id="navlist">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="about_page.php">About</a></li>
-            <li><a href="menu_page.php">Menu</a></li>
-            <li><a href="coffee_beans_page.php">Coffee Beans</a></li>
-            <li><a href="contact_page.php">Contact</a></li>
+            <li><a href="index.php" class="page1">Home</a></li>
+            <li><a href="about_page.php" class="page2">About</a></li>
+            <li><a href="menu_page.php" class="page3">Menu</a></li>
+            <li><a href="coffee_beans_page.php" class="page4">Coffee Beans</a></li>
+            <li><a href="contact_page.php" class="page5">Contact</a></li>
           </ul>
         </nav>
       </header>

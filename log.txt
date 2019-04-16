@@ -1,3 +1,21 @@
+commit f84293ea62f3ab18ef962ae7c224b4ac394e6184
+Author: Maryna <marynahaidashevska@gmail.com>
+Date:   Sat Apr 13 00:00:55 2019 -0500
+
+    Extracted h1 and titles
+
+commit c595191bc48e0dbf64ee0a30a6d8cde5c7be4163
+Author: Maryna <marynahaidashevska@gmail.com>
+Date:   Fri Apr 12 23:44:42 2019 -0500
+
+    Extracted header and footer added
+
+commit 46ba944ec34121e3234b82df2fe0162e6a2b829b
+Author: Maryna <marynahaidashevska@gmail.com>
+Date:   Fri Apr 12 15:52:59 2019 -0500
+
+    Changed files from html to php and new ones added
+
 commit b1233253deaa21a0fe2a8420714f69e5b821103a
 Author: Maryna <marynahaidashevska@gmail.com>
 Date:   Fri Apr 12 09:44:50 2019 -0500
