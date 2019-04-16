@@ -4,7 +4,7 @@ $title = 'index_page';
 $h1 = 'Our Atmosphere';
 include __DIR__ . '/../inc/header.inc.php';
 require 'functions.php';
-require 'connect.php';
+require 'config.php';
 
 ?>
     <body id="<?=$title?>">

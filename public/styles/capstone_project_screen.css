@@ -110,8 +110,8 @@
       text-decoration: underline;
       text-shadow: none;
     }
-    header #about_page nav ul #navlist li a.page1{
-      background-color: #fff;
+    body#about_page header nav ul#navlist li a.page2{
+      background-color: #ff0000;
     }
     
     /* CSS style for main content */

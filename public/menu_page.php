@@ -4,7 +4,7 @@ $title = 'menu_page';
 $h1 = 'Coffee Time Menu';
 include __DIR__ . '/../inc/header.inc.php';
 require 'functions.php';
-require 'connect.php';
+require 'config.php';
 
 ?>
     <body id="<?=$title?>">s

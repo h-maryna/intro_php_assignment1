@@ -1,3 +1,9 @@
+commit e9676267514d36962137ddc197f52eb1b86549dd
+Author: Maryna <marynahaidashevska@gmail.com>
+Date:   Mon Apr 15 22:04:01 2019 -0500
+
+    Added require files config and functions
+
 commit f84293ea62f3ab18ef962ae7c224b4ac394e6184
 Author: Maryna <marynahaidashevska@gmail.com>
 Date:   Sat Apr 13 00:00:55 2019 -0500

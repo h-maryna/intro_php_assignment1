@@ -1,0 +1,29 @@
+<style>
+caption{  /*CSS style for caption in tables */
+      color: #000;
+      text-align: left;
+      font-weight: 700;
+      font-size: 20px;
+      padding: 5px;
+    
+      margin-bottom: 5px;
+    }
+    td,th{
+      border: 1px solid #fb6; 
+    }
+    th{ 
+      color: #000;
+      background-color: #fc9;
+      text-align: center;
+    }
+    th img{
+      background-color: #fff;
+    }
+    td{
+      text-align: left;
+      padding: 5px;
+    }
+    h2 p{
+      padding: 5px;
+    }
+</style>

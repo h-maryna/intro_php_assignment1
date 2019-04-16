@@ -49,6 +49,11 @@
       <link rel="stylesheet" href="capstone_old_ie.css" type="text/css" />
     <![endif]-->
 
+    <?php if('about_page' == $title) {
+    include 'embedded.inc';
+    } 
+    ?>
+    
     <style>
       /*To make our desktop to be responsible */
       @media screen and (min-width: 769px){ /*for desctop */
@@ -77,10 +82,7 @@
     </style>
     <script src="old_ie.js"></script>
   </head> 
- 
- 
-  
-  <body id="<?=$title?>">
+    
     <div id="wrapper">
       <header><!-- Main logo and services tagline -->
         <div id="header">
