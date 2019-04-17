@@ -49,8 +49,8 @@
       <link rel="stylesheet" href="capstone_old_ie.css" type="text/css" />
     <![endif]-->
 
-    <?php if('about_page' == $title) {
-    include 'embedded.css';
+    <?php if($title == 'coffee_beans_page') {
+         include __DIR__ . '/../inc/embedded.css';
     } 
     ?>
     

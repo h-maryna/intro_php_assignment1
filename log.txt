@@ -1,3 +1,9 @@
+commit 30d7986f09eebb48c1596b905195fa3d42015eec
+Author: Maryna <marynahaidashevska@gmail.com>
+Date:   Tue Apr 16 15:48:44 2019 -0500
+
+    Added new styles to navigation
+
 commit d478e06ec1a361586ce1913637391902d040f29c
 Author: Maryna <marynahaidashevska@gmail.com>
 Date:   Mon Apr 15 23:30:54 2019 -0500
