@@ -1,11 +1,22 @@
 <?php 
 
+ /**
+  * assigning a new variable for title
+  */
 $title = 'about_page';
+
+/**
+ * assigning a new variable for h1
+ */
 $h1 = 'Hello from Coffee Time';
 
 require 'functions.php';
-require 'config.php';
-include __DIR__ . '/../inc/header.inc.php';
+require 'connect.php';
+
+/**
+ * include file which will be used as a template for each page as a header
+ */
+include __DIR__ . '/../../inc/header.inc.php';
 
 ?>
       <title><?=$title?></title>
@@ -32,8 +43,10 @@ include __DIR__ . '/../inc/header.inc.php';
        </main>
   
   <?php 
-
-   include __DIR__ . '/../inc/footer.inc.php';
+  /**
+   * include file which will be used as a template for each page as a footer
+   */
+   include __DIR__ . '/../../inc/footer.inc.php';
 
   ?>    
      

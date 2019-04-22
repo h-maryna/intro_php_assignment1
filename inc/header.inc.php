@@ -49,6 +49,9 @@
       <link rel="stylesheet" href="capstone_old_ie.css" type="text/css" />
     <![endif]-->
 
+    <!-- Assigning a new style to coffee_beans_page 
+      -- return changing a style
+    -->
     <?php if($title == 'coffee_beans_page') {
          include __DIR__ . '/../inc/embedded.css';
     } 

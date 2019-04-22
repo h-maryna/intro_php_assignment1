@@ -1,10 +1,114 @@
 <?php 
 
+/**
+  * assigning a new variable for title
+  */
 $title = 'contact_page';
+
+/**
+ * assigning a new variable for h1
+ */
 $h1 = 'Visit Coffee Time';
-include __DIR__ . '/../inc/header.inc.php';
+
+/**
+ * include file which will be used as a template for each page as a header
+ */
+include __DIR__ . '/../../inc/header.inc.php';
+
 require 'functions.php';
-require 'config.php';
+include 'connect.php';
+
+// empty errors array
+// serves as flag... we
+// can test at any time to see
+// if we have errors
+$errors = [];
+
+// Set flag that form has not been
+// submitted successfully.  This will
+// be used as a conditional to determine
+// what to display in the view.
+$success = false;
+
+// If the request is POST (a form submission)
+// execute this block of code
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+  
+  // Our required fields
+  $required = ['first_name', 'last_name', 'street', 'city', 'postal_code', 'province', 'country', 'phone', 'email', 'password'];
+
+  // Make sure there is a POST value for each
+  // required field
+  foreach($required  as $key => $value) {
+
+    if(empty($_POST[$value])) {
+      // Set an error message in the errors
+      // array if there is no POST value for
+      // a field
+      $errors[$value] = $value . ' is a required field';
+    }
+
+    if(strlen($_POST['first_name']) < 3) {
+      $errors['first_name'] = 'First name must have at least 3 characters';
+    }
+    
+    if(strlen($_POST['last_name']) < 4) {
+      $errors['last_name'] = 'Last name must have at least 4 characters';
+    }
+
+    if(strlen($_POST['country']) < 2) {
+      $errors['country'] = 'Country must have at least 2 characters';
+    }
+
+    if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+      $errors['email'] = 'Please provide a valid email address';
+    }
+
+  }
+
+  
+  // If there are no errors after processing all POST
+   if(!$errors) {
+
+    try {
+
+      // create query
+      $query = "INSERT INTO
+             customer
+             (first_name, last_name, street, city, postal_code, province, country, phone, email, password)
+             VALUES
+             (:first_name, :last_name, :street, :city, :postal_code, :province, :country, :phone, :email, :password)";
+      
+      // prepare query
+      $stmt = $dbh->prepare($query);
+
+      $params = array(
+        ':first_name' => $_POST['first_name'],
+        ':last_name' => $_POST['last_name'],
+        ':street' => $_POST['street'],
+        ':city' => $_POST['city'],
+        ':postal_code' => $_POST['postal_code'],
+        ':province' => $_POST['province'],
+        ':country' => $_POST['country'],
+        ':phone' => $_POST['phone'],
+        ':email' => $_POST['email'],
+        ':password' => $_POST['password']
+      );
+
+      // execute query
+      $stmt->execute($params);
+
+      $author_id = $dbh->lastInsertId();
+
+      header('Location: inserting_data.php?customer_id=' . $customer_id);
+      exit;
+
+    } catch(Exception $e) {
+      die($e->getMessage());
+    }
+  } // end if
+} // END IF POST
+
 
 ?>
     <title><?=$title?></title>
@@ -32,103 +136,97 @@ require 'config.php';
         feedback - it means a lot to us.</p>
       <a href="#" class="go_top">Go to the top</a>  
    
-      <form method="post"
-            action="http://www.scott-media.com/test/form_display.php"
-            autocomplete="on">
-          
-      <fieldset><!-- Form with personal info -->
-      <legend>Leave us your feedback</legend>
-        <p><!-- Field with First name info -->
-        <label for="first_name">First Name</label>
-        <input type="text" 
-               name="first_name" 
-               id="first_name" 
-               placeholder = "Type your first name" 
-               required="required" />
-        </p>
+      <h1>Registration</h1>
+  <?php include 'errors.inc.php'; ?>
+  <?php if($errors) : ?>
 
-        <p><!-- Field with Last name info -->
-          <label for="last_name">Last Name</label>
-          <input type="text" 
-                 name="last_name" 
-                 id="last_name"
-                 placeholder = "Type your last name" />
-        </p>
-        <p><!-- Field with Birthday info -->
-          <label for="birthday">Choose your birthday: (yyyy-mm-dd)</label>
-          <input type="date" name="birthday" id="birthday" />
-        </p>
-        <p><!-- Field with email info -->
-          <label for="email">Email address</label>
-          <input type="email" name="email" id="email">
-        </p>
-        <p><!-- Field with selection gender info -->
-          <select name="gender" id="gender">
-            <option value="not_selected">Please select your gender</option>
-            <option value="female">Female</option>
-            <option value="male">Male</option>
-            <option value="transgender">Transgender</option>
-            <option value="not_selected">Prefer not to disclose</option>
-          </select>
-        </p>
-        <p><!-- Group with radio buttons and option to choose -->
-          Please choose what do you usually order:<br />
-          <input type="radio" id="coffee_drinks" name="order" value="Coffee Drinks" />
-          <label for="coffee_drinks">Coffee Drinks</label><br />
+  <h1>We found errors</h1>
+    <div class="errors">
+      <p>Please go back and correct the following errors:</p>
+      <ul>
+      <?php foreach($errors as $value) : ?>
+        <li><?=e($value)?></li>
+      <?php endforeach; ?>
+      </ul>
+    </div>
 
-          <input type="radio" id="tea" name="order" value="Tea" />
-          <label for="tea">Tea</label><br />
+  <?php endif; ?>
 
-          <input type="radio" id="sandwiches" name="order" value="Sandwiches" />
-          <label for="sandwiches">Sandwiches</label><br />     
+<?php if(!$success) : ?>
 
-          <input type="radio" id="baking_goods" name="order" value="Baking goods" />
-          <label for="baking_goods">Baking Goods</label><br />   
-        </p>
+<form method="post" action="contact_page.php" novalidate>
+<fieldset>
+  <legend>Registration Form</legend>
+  <p><label for="first_name">First Name</label><br />
+    <input type="text" name="first_name" 
+    value="<?=clean('first_name')?>" /></p>
+  <p><label for="last_name">Last Name</label><br />
+    <input type="text" name="last_name"
+    value="<?=clean('last_name')?>" /></p>
+  <p><label for="street">Street</label><br />
+    <input type="text" name="street" 
+    value="<?=clean('street')?>" /></p>
+  <p><label for="city">City</label><br />
+    <input type="text" name="city" 
+    value="<?=clean('city')?>" /></p>
+  <p><label for="postal_code">Postal Code</label><br />
+    <input type="text" name="postal_code"
+    value="<?=clean('postal_code')?>" /></p>
+  <p><label for="province">Province</label><br />
+    <input type="text" name="province"
+    value="<?=clean('province')?>" /></p>
+  <p><label for="country">Country</label><br />
+    <input type="text" name="country"
+    value="<?=clean('country')?>" /></p>
+  <p><label for="phone">Phone</label><br />
+    <input type="text" name="phone"
+    value="<?=clean('phone')?>" /></p>
+  <p><label for="email">Email</label><br />
+    <input type="text" name="email" 
+    value="<?=clean('email')?>" /></p>
+  <p><label for="password">Password</label><br />
+    <input type="text" name="password" 
+    value="<?=clean('password')?>" /></p>
+  <p><label for="created_at">Created at</label><br />
+    <input type="text" name="created_at" 
+    value="<?=clean('created_at')?>" /></p>
+  <p><label for="updated_at">Updated At</label><br />
+    <input type="text" name="updated_at" 
+    value="<?=clean('updated_at')?>" /></p>
+  <p><button>Submit</button></p>
+</fieldset>
+</form>
 
-        <p><!-- Checkbox field -->
-        How do you prefer to pay for your order?<br />
-          <input type="checkbox"
-                 id="cash"
-                 name="payment_choice1"
-                 value="Cash" />
-          <label for="cash">Cash</label><br />
+<?php else : ?>
 
-          <input type="checkbox"
-                 id="visa"
-                 name="payment_choice2"
-                 value="Visa" />
-          <label for="visa">Visa</label><br />
+<h2>Thank you for your registration on ouw web site!</h2>
 
-          <input type="checkbox"
-                 id="master_card"
-                 name="payment_choice3"
-                 value="Master Card" />
-          <label for="master_card">Master Card</label><br />
-        </p>
-        <p><!-- Field with abilioty to leave a feedback -->
-          <label for="comments">Your feedback</label><br />
-          <textarea rows="7" 
-                    cols="40" 
-                    id="comments" 
-                    name="comments"
-                    accesskey="c"
-                    title="use accesskey 'c'"></textarea>
-        </p>
-    </fieldset>
-      <p> <!-- Submit and reset button -->
-        <input value="Send Feedback" type="submit" />
-        <input value="Clear Form" type="reset" />
-      </p>
-    </form>  
-    </main>
+  <ul><!-- Loop through $_POST to output user -->
+  <?php foreach($_POST as $key => $value): ?>
+    <!-- Test each value to see if it's an array, and
+      if it's NOT an array, we can print it out -->
+    <?php if(!is_array($value) && (!is_array($value) == 'password')) : ?>
+      <li><strong><?=e($key)?></strong>: <?=e($value)?></li>
+      </li>
+    <?php endif; ?>
+  <?php endforeach; ?>
+    </ul>
+  </ul>
+<?php endif; ?>
+
+<pre>
+
+  <?php // print_r($_SERVER) ?>
+
+</pre>
+
+</body>
   
   <?php 
+  /**
+   * include file which will be used as a template for each page as a footer
+   */
+   include __DIR__ . '/../../inc/footer.inc.php';
 
-     include __DIR__ . '/../inc/header.inc.php';
-
-  ?>
-    </div>
-  </body>
-
+  ?>    
 </html>

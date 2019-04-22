@@ -17,3 +17,11 @@ function e($string) {
 function e_attr($string) {
 	return htmlentities($string, ENT_QUOTES, 'UTF-8');
 }
+
+function clean($field) {
+	if(!empty($_POST[$field])) {
+		return htmlentities($_POST[$field], ENT_QUOTES, "UTF-8");
+	} else {
+		return '';
+	}
+}

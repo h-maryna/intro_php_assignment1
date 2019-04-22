@@ -1,10 +1,21 @@
 <?php 
 
+ /**
+  * assigning a new variable for title
+  */
 $title = 'menu_page';
+
+/**
+ * assigning a new variable for h1
+ */
 $h1 = 'Coffee Time Menu';
-include __DIR__ . '/../inc/header.inc.php';
+
+/**
+ * include file which will be used as a template for each page as a header
+ */
+include __DIR__ . '/../../inc/header.inc.php';
 require 'functions.php';
-require 'config.php';
+require 'connect.php';
 
 ?>
     <title><?=$title?></title>
@@ -64,8 +75,10 @@ require 'config.php';
     </main>
     
 <?php 
-
-    include __DIR__ . '/../inc/header.inc.php';
+   /**
+   * include file which will be used as a template for each page as a footer
+   */
+    include __DIR__ . '/../../inc/header.inc.php';
 
 ?>
     </div>

@@ -405,6 +405,15 @@
       font-style: italic;
       opacity: 0.6;
     }
+    button{
+      width: 150px;
+      padding-left: 10px;
+      font-size: 18px;
+      padding-top: 2px;
+      padding-bottom: 2px;
+      border-radius: 10px;
+      background-color: #fc9;
+    }
     select#gender{
       background-color: #fc9;
       font-size: 20px;
