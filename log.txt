@@ -1,3 +1,9 @@
+commit fbcb480b82ab17311a4f05458499dfdfb9f0e287
+Author: Maryna <marynahaidashevska@gmail.com>
+Date:   Mon Apr 22 00:37:51 2019 -0500
+
+    Adding some validation to the fields
+
 commit f7a514126573963ab760d125436ea1120cfa7028
 Author: Maryna <marynahaidashevska@gmail.com>
 Date:   Mon Apr 22 00:16:09 2019 -0500
