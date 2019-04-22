@@ -60,6 +60,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
       $errors['country'] = 'Country must have at least 2 characters';
     }
 
+    if((strlen($_POST['postal_code']) < 5) && (strlen($_POST['postal_code']) >6)){
+      $errors['postal_code'] = 'Postal code must have 6 characters';
+    }
+
     if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
       $errors['email'] = 'Please provide a valid email address';
     }
@@ -69,43 +73,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
   
   // If there are no errors after processing all POST
    if(!$errors) {
-
-    try {
-
-      // create query
-      $query = "INSERT INTO
-             customer
-             (first_name, last_name, street, city, postal_code, province, country, phone, email, password)
-             VALUES
-             (:first_name, :last_name, :street, :city, :postal_code, :province, :country, :phone, :email, :password)";
-      
-      // prepare query
-      $stmt = $dbh->prepare($query);
-
-      $params = array(
-        ':first_name' => $_POST['first_name'],
-        ':last_name' => $_POST['last_name'],
-        ':street' => $_POST['street'],
-        ':city' => $_POST['city'],
-        ':postal_code' => $_POST['postal_code'],
-        ':province' => $_POST['province'],
-        ':country' => $_POST['country'],
-        ':phone' => $_POST['phone'],
-        ':email' => $_POST['email'],
-        ':password' => $_POST['password']
-      );
-
-      // execute query
-      $stmt->execute($params);
-
-      $author_id = $dbh->lastInsertId();
-
-      header('Location: inserting_data.php?customer_id=' . $customer_id);
-      exit;
-
-    } catch(Exception $e) {
-      die($e->getMessage());
-    }
+      $success = true;
   } // end if
 } // END IF POST
 
@@ -187,19 +155,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
   <p><label for="password">Password</label><br />
     <input type="text" name="password" 
     value="<?=clean('password')?>" /></p>
-  <p><label for="created_at">Created at</label><br />
-    <input type="text" name="created_at" 
-    value="<?=clean('created_at')?>" /></p>
-  <p><label for="updated_at">Updated At</label><br />
-    <input type="text" name="updated_at" 
-    value="<?=clean('updated_at')?>" /></p>
   <p><button>Submit</button></p>
 </fieldset>
 </form>
 
 <?php else : ?>
 
-<h2>Thank you for your registration on ouw web site!</h2>
+<h2>Thank you for your registration on our web site!</h2>
 
   <ul><!-- Loop through $_POST to output user -->
   <?php foreach($_POST as $key => $value): ?>
