@@ -31,7 +31,6 @@ $errors = [];
 $success = false;
 
 // If the request is POST (a form submission)
-// execute this block of code
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
   
   // Our required fields
@@ -73,7 +72,60 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
   
   // If there are no errors after processing all POST
    if(!$errors) {
-      $success = true;
+        try {
+
+      // create query
+      $query = "INSERT INTO
+             customer
+             (first_name, last_name, street, city, postal_code, province, country, phone, email, password)
+             VALUES
+             (:first_name, :last_name, :street, :city, :postal_code, :province, :country, :phone, :email, :password)";
+      
+      // prepare query
+      $stmt = $dbh->prepare($query);
+
+      $params = array(
+        ':first_name' => $_POST['first_name'],
+        ':last_name' => $_POST['last_name'],
+        ':street' => $_POST['street'],
+        ':city' => $_POST['city'],
+        ':postal_code' => $_POST['postal_code'],
+        ':province' => $_POST['province'],
+        ':country' => $_POST['country'],
+        ':phone' => $_POST['phone'],
+        ':email' => $_POST['email'],
+        ':password' => $_POST['password']
+      );
+
+      // execute query
+      $stmt->execute($params);
+
+      $customer_id = $dbh->lastInsertId();
+
+      //header('Location: inserting_data.php?customer_id=' . $customer_id);
+      //exit;
+      // Create query to select a customer according its id
+      $query = "SELECT first_name, last_name, street, city, postal_code, province, country, phone, email FROM customer 
+            WHERE customer_id = :customer_id";
+
+      // prepare the query
+      $stmt = $dbh->prepare($query);
+
+      // Prepare params array
+      $params = array(
+        ':customer_id' => $customer_id
+    );
+
+    // execute the query
+    $stmt->execute($params);
+
+    // get the result
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $success = true;
+        } catch(Exception $e) {
+          die($e->getMessage());
+        }
+    
   } // end if
 } // END IF POST
 
@@ -120,6 +172,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   <?php endif; ?>
 
+
 <?php if(!$success) : ?>
 
 <form method="post" action="contact_page.php" novalidate>
@@ -153,7 +206,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <input type="text" name="email" 
     value="<?=clean('email')?>" /></p>
   <p><label for="password">Password</label><br />
-    <input type="text" name="password" 
+    <input type="password" name="password" 
+    value="<?=clean('password')?>" /></p>
+  <p><label for="password">Confirm assword</label><br />
+    <input type="password" name="password" 
     value="<?=clean('password')?>" /></p>
   <p><button>Submit</button></p>
 </fieldset>
@@ -164,12 +220,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 <h2>Thank you for your registration on our web site!</h2>
 
   <ul><!-- Loop through $_POST to output user -->
-  <?php foreach($_POST as $key => $value): ?>
+  <?php foreach($result as $key => $value): ?>
     <!-- Test each value to see if it's an array, and
       if it's NOT an array, we can print it out -->
-    <?php if(!is_array($value) && (!is_array($value) == 'password')) : ?>
+    <?php if(!is_array($value)) : ?>
       <li><strong><?=e($key)?></strong>: <?=e($value)?></li>
       </li>
+
     <?php endif; ?>
   <?php endforeach; ?>
     </ul>

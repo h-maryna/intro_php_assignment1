@@ -1,3 +1,9 @@
+commit e4085a5c91733ca8da2c1f9d376e246d5b626f3b
+Author: Maryna <marynahaidashevska@gmail.com>
+Date:   Mon Apr 22 01:01:34 2019 -0500
+
+    Adding file for inserting data to mysql
+
 commit fbcb480b82ab17311a4f05458499dfdfb9f0e287
 Author: Maryna <marynahaidashevska@gmail.com>
 Date:   Mon Apr 22 00:37:51 2019 -0500
